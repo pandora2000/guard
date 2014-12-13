@@ -42,6 +42,8 @@ module Guard
     # @param [Array<String>] removed the removed paths.
     #
     def run_on_changes(modified, added, removed)
+      @@last_modified = modified
+
       types = {
         MODIFICATION_TASKS => modified,
         ADDITION_TASKS => added,

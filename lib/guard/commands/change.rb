@@ -18,8 +18,8 @@ module Guard
 
           def process(*files)
             if files.empty?
-              output.puts "Please specify a file."
-              return
+              files = (Guard::Runner.class_variable_get(:@@last_modified) rescue nil)
+              return if files.nil? || files.empty?
             end
 
             Guard.async_queue_add(modified: files, added: [], removed: [])
